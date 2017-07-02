@@ -117,3 +117,5 @@ var clyde = {
   character: 'Pokey',
   edible: false
 };
+
+var ghosts = ['inky', 'blinky', 'pinky', 'clyde']
