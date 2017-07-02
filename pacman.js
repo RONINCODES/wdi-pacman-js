@@ -29,6 +29,10 @@ function displayStats() {
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
+  console.log('(1) Eat Inky');
+  console.log('(2) Eat Blinky');
+  console.log('(3) Eat Pinky');
+  console.log('(4) Eat Clyde');
   console.log('(q) Quit');
 }
 
@@ -44,6 +48,30 @@ function eatDot() {
   score += 10;
 }
 
+function eatInky() {
+  console.log('\nChomp!');
+  lives -= 1;
+}
+
+
+function eatBlinky() {
+  console.log('\nChomp!');
+  lives -= 1;
+}
+
+
+function eatPinky() {
+  console.log('\nChomp!');
+  lives -= 1;
+}
+
+
+function eatClyde() {
+  console.log('\nChomp!');
+  lives -= 1;
+}
+
+
 
 // Process Player's Input
 function processInput(key) {
@@ -55,36 +83,22 @@ function processInput(key) {
     case 'd':
       eatDot();
       break;
+      case '1':
+        eatInky();
+        break;
+        case '2':
+          eatBlinky();
+          break;
+          case '3':
+            eatPinky();
+            break;
+            case '4':
+              eatClyde();
+              break;
     default:
       console.log('\nInvalid Command!');
   }
 }
-
-
-//
-// YOU PROBABLY DON'T WANT TO CHANGE CODE BELOW THIS LINE
-//
-
-// Setup Input and Output to work nicely in our Terminal
-var stdin = process.stdin;
-stdin.setRawMode(true);
-stdin.resume();
-stdin.setEncoding('utf8');
-
-// Draw screen when game first starts
-drawScreen();
-
-// Process input and draw screen each time player enters a key
-stdin.on('data', function(key) {
-  process.stdout.write(key);
-  processInput(key);
-  setTimeout(drawScreen, 300); // The command prompt will flash a message for 300 milliseoncds before it re-draws the screen. You can adjust the 300 number to increase this.
-});
-
-// Player Quits
-process.on('exit', function() {
-  console.log('\n\nGame Over!\n');
-});
 
 var inky = {
   menu_option: '1',
@@ -119,3 +133,36 @@ var clyde = {
 };
 
 var ghosts = ['inky', 'blinky', 'pinky', 'clyde']
+
+function eatGhost(ghost){
+  if (ghost[index].edible === false ) {
+    ghost[index].lives -= 1;
+    return + ghosts[index].name + "" + ghosts[index].colour + "has been killed"
+    }
+  }
+
+
+//
+// YOU PROBABLY DON'T WANT TO CHANGE CODE BELOW THIS LINE
+//
+
+// Setup Input and Output to work nicely in our Terminal
+var stdin = process.stdin;
+stdin.setRawMode(true);
+stdin.resume();
+stdin.setEncoding('utf8');
+
+// Draw screen when game first starts
+drawScreen();
+
+// Process input and draw screen each time player enters a key
+stdin.on('data', function(key) {
+  process.stdout.write(key);
+  processInput(key);
+  setTimeout(drawScreen, 300); // The command prompt will flash a message for 300 milliseoncds before it re-draws the screen. You can adjust the 300 number to increase this.
+});
+
+// Player Quits
+process.on('exit', function() {
+  console.log('\n\nGame Over!\n');
+});
