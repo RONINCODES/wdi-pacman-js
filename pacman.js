@@ -1,6 +1,7 @@
 // Setup initial game stats
 var score = 0;
 var lives = 2;
+var powerPellets = 4;
 
 
 // Define your ghosts here
@@ -23,7 +24,7 @@ function clearScreen() {
 }
 
 function displayStats() {
-  console.log('Score: ' + score + '     Lives: ' + lives);
+  console.log('Score: ' + score + '     Lives: ' + lives + '\n\n\nPower-Pellets:' + powerPellets );
 }
 
 function displayMenu() {
@@ -137,13 +138,14 @@ var ghosts = ['inky', 'blinky', 'pinky', 'clyde']
 function eatGhost(ghost){
   if (ghost.edible === false ) {
     lives -= 1;
-    }
   }
-
-  // function gameOver(){
-  //   if (lives <= 0) {
-  //
-  //   }
+  }
+//game over function not working yet.
+function gameOver(lives) {
+  if (lives <= 0) {
+    console.log('n Game Over')
+  }
+}
 
 
 
