@@ -49,29 +49,29 @@ function eatDot() {
 }
 
 function eatInky() {
-  console.log('\nChomp!');
+  console.log('\n'+ inky.name + ", The " + inky.colour + " coloured ghost killed Pac-Man");
   lives -= 1;
 }
 
 
 function eatBlinky() {
-  console.log('\nChomp!');
+  console.log('\n'+ blinky.name + ", The " + blinky.colour + " coloured ghost killed Pac-Man");
   lives -= 1;
 }
 
 
 function eatPinky() {
-  console.log('\nChomp!');
+  console.log('\n'+ pinky.name + ", The " + pinky.colour + " coloured ghost killed Pac-Man");
   lives -= 1;
 }
 
 
 function eatClyde() {
-  console.log('\nChomp!');
+  console.log('\n'+ clyde.name + ", The " + clyde.colour + " coloured ghost killed Pac-Man");
   lives -= 1;
 }
 
-
+// console.log(+ ghost.name + "" + ghost.colour + "killed Pac Man");
 
 // Process Player's Input
 function processInput(key) {
@@ -135,11 +135,17 @@ var clyde = {
 var ghosts = ['inky', 'blinky', 'pinky', 'clyde']
 
 function eatGhost(ghost){
-  if (ghost[index].edible === false ) {
-    ghost[index].lives -= 1;
-    return + ghosts[index].name + "" + ghosts[index].colour + "has been killed"
+  if (ghost.edible === false ) {
+    lives -= 1;
     }
   }
+
+  // function gameOver(){
+  //   if (lives <= 0) {
+  //
+  //   }
+
+
 
 
 //
