@@ -30,6 +30,7 @@ function displayStats() {
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
+  console.log('(p) Eat Power-Pellet')
   console.log('(1) Eat Inky');
   console.log('(2) Eat Blinky');
   console.log('(3) Eat Pinky');
@@ -72,6 +73,14 @@ function eatClyde() {
   lives -= 1;
 }
 
+function eatPowerPellet() {
+  console.log('\n'+ clyde.name + ", The " + clyde.colour + " coloured ghost killed Pac-Man");
+  score += 50;
+  ghosts.edible === true;
+  powerPellets--;
+
+}
+
 // console.log(+ ghost.name + "" + ghost.colour + "killed Pac Man");
 
 // Process Player's Input
@@ -84,6 +93,9 @@ function processInput(key) {
     case 'd':
       eatDot();
       break;
+      case 'p':
+        eatPowerPellet();
+        break;
       case '1':
         eatInky();
         break;
