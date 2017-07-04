@@ -64,11 +64,12 @@ function displayStats() {
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
-  console.log('(p) Eat Power-Pellet')
-  console.log('(1) Eat Inky');
-  console.log('(2) Eat Blinky');
-  console.log('(3) Eat Pinky');
-  console.log('(4) Eat Clyde');
+  if (powerPellets > 0) {
+  console.log('(p) Eat Power-Pellet') }
+  console.log('(1) Eat Inky (' + amIEdible(inky) + ')');
+  console.log('(2) Eat Blinky (' + amIEdible(blinky) + ')');
+  console.log('(3) Eat Pinky (' + amIEdible(pinky) + ')');
+  console.log('(4) Eat Clyde (' + amIEdible(clyde) + ')');
   console.log('(q) Quit');
 }
 
@@ -80,10 +81,17 @@ function displayPrompt() {
 
 // Menu Options
 function eatDot() {
-  console.log('\nChomp!');
+  console.log('\nmmm mmm good dot!');
   score += 10;
 }
 
+function amIEdible(ghost) {
+  if (ghost.edible == true) {
+    return "edible";
+  } else {
+    return "inedible";
+  }
+}
 
 
 function eatPowerPellet() {
@@ -105,8 +113,10 @@ function eatGhost(ghost){
     gameOver();
     console.log('\n'+ ghost.name + ", The " + ghost.colour + " coloured ghost killed Pac-Man");
   }else {
-    console.log("\nYummy")
+    console.log("\n " + ghost.name + "was yummy!");
+    ghost.edible = false
     lives += 0
+    score += 200
   }
   }
 //game over function not working yet.
