@@ -2,6 +2,7 @@
 var score = 0;
 var lives = 2;
 var powerPellets = 4;
+var dots = 240
 
 var inky = {
   menu_option: '1',
@@ -58,12 +59,15 @@ function clearScreen() {
 }
 
 function displayStats() {
-  console.log('Score: ' + score + '     Lives: ' + lives + '\n\n\nPower-Pellets:' + powerPellets );
+  console.log('Score: ' + score + '     Lives: ' + lives +     '    Dots: ' + dots +  '\n\n\nPower-Pellets:' + powerPellets );
 }
 
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
+  console.log('(e) Eat 10 Dots');
+  console.log('(f) Eat 100 Dots');
+  console.log('(g) Eat All Dots');
   if (powerPellets > 0) {
   console.log('(p) Eat Power-Pellet') }
   console.log('(1) Eat Inky (' + amIEdible(inky) + ')');
@@ -80,9 +84,23 @@ function displayPrompt() {
 
 
 // Menu Options
-function eatDot() {
+function eatDot(num) {
+  if ((num == 1) && (dots >= 1)) {
   console.log('\nmmm mmm good dot!');
   score += 10;
+  dots -= 1;
+} else if ((num == 10) && (dots >= 10)){
+  score += 100;
+  dots -= 10;
+} else if ((num == 100) && (dots >= 100)) {
+  score += 1000;
+  dots -= 100;
+} else if ((num == 999) && (dots > 0)){
+  score += dots * 10;
+  dots = 0 ;
+} else {
+  console.log("\nno more dots for you!")
+}
 }
 
 function amIEdible(ghost) {
@@ -143,23 +161,32 @@ function processInput(key) {
       process.exit();
       break;
     case 'd':
-      eatDot();
+      eatDot(1);
       break;
-      case 'p':
-        eatPowerPellet();
-        break;
-      case '1':
-        eatGhost(inky);
-        break;
-        case '2':
-          eatGhost(blinky);
-          break;
-          case '3':
-            eatGhost(pinky);
-            break;
-            case '4':
-              eatGhost(clyde);
-              break;
+    case 'e':
+      eatDot(10);
+      break;
+    case 'f':
+      eatDot(100);
+      break;
+    case 'g':
+      eatDot(999);
+      break;
+    case 'p':
+      eatPowerPellet();
+      break;
+    case '1':
+      eatGhost(inky);
+      break;
+    case '2':
+      eatGhost(blinky);
+      break;
+    case '3':
+      eatGhost(pinky);
+      break;
+    case '4':
+      eatGhost(clyde);
+      break;
     default:
       console.log('\nInvalid Command!');
   }
