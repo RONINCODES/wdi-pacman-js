@@ -3,6 +3,40 @@ var score = 0;
 var lives = 2;
 var powerPellets = 4;
 
+var inky = {
+  menu_option: '1',
+  name: 'Inky',
+  colour: 'Red',
+  character: 'Shadow',
+  edible: false
+};
+
+var blinky = {
+  menu_option: '2',
+  name: 'Blinky',
+  colour: 'Cyan',
+  character: 'Speedy',
+  edible: false
+};
+
+var pinky = {
+  menu_option: '3',
+  name: 'Pinky',
+  colour: 'Pink',
+  character: 'Bashful',
+  edible: false
+};
+
+var clyde = {
+  menu_option: '4',
+  name: 'clyde',
+  colour: 'Orange',
+  character: 'Pokey',
+  edible: false
+};
+
+var ghosts = [inky, blinky, pinky, clyde]
+
 
 // Define your ghosts here
 
@@ -50,36 +84,44 @@ function eatDot() {
   score += 10;
 }
 
-function eatInky() {
-  console.log('\n'+ inky.name + ", The " + inky.colour + " coloured ghost killed Pac-Man");
-  lives -= 1;
-}
 
-
-function eatBlinky() {
-  console.log('\n'+ blinky.name + ", The " + blinky.colour + " coloured ghost killed Pac-Man");
-  lives -= 1;
-}
-
-
-function eatPinky() {
-  console.log('\n'+ pinky.name + ", The " + pinky.colour + " coloured ghost killed Pac-Man");
-  lives -= 1;
-}
-
-
-function eatClyde() {
-  console.log('\n'+ clyde.name + ", The " + clyde.colour + " coloured ghost killed Pac-Man");
-  lives -= 1;
-}
 
 function eatPowerPellet() {
-  console.log('\n'+ clyde.name + ", The " + clyde.colour + " coloured ghost killed Pac-Man");
+  if (powerPellets <= 0) {
+    console.log("\nWe are all out Folks!");
+  } else {
+  console.log('\nYummy!');
   score += 50;
-  ghosts.edible === true;
-  powerPellets--;
-
+  powerPellets -= 1;
+  for (var index = 0; index < ghosts.length; index++) {
+  ghosts[index].edible = true;
+ }
 }
+}
+
+function eatGhost(ghost){
+  if (ghost.edible === false ) {
+    lives -= 1;
+    gameOver();
+    console.log('\n'+ ghost.name + ", The " + ghost.colour + " coloured ghost killed Pac-Man");
+  }else {
+    console.log("\nYummy")
+    lives += 0
+  }
+  }
+//game over function not working yet.
+function gameOver() {
+  if (lives <= 0) {
+    process.exit();
+    console.log('\n Game Over');
+  }
+}
+
+
+
+
+
+
 
 // console.log(+ ghost.name + "" + ghost.colour + "killed Pac Man");
 
@@ -97,67 +139,22 @@ function processInput(key) {
         eatPowerPellet();
         break;
       case '1':
-        eatInky();
+        eatGhost(inky);
         break;
         case '2':
-          eatBlinky();
+          eatGhost(blinky);
           break;
           case '3':
-            eatPinky();
+            eatGhost(pinky);
             break;
             case '4':
-              eatClyde();
+              eatGhost(clyde);
               break;
     default:
       console.log('\nInvalid Command!');
   }
 }
 
-var inky = {
-  menu_option: '1',
-  name: 'Inky',
-  colour: 'Red',
-  character: 'Shadow',
-  edible: false
-};
-
-var blinky = {
-  menu_option: '2',
-  name: 'Blinky',
-  colour: 'Cyan',
-  character: 'Speedy',
-  edible: false
-};
-
-var pinky = {
-  menu_option: '3',
-  name: 'Pinky',
-  colour: 'Pink',
-  character: 'Bashful',
-  edible: false
-};
-
-var clyde = {
-  menu_option: '4',
-  name: 'clyde',
-  colour: 'Orange',
-  character: 'Pokey',
-  edible: false
-};
-
-var ghosts = ['inky', 'blinky', 'pinky', 'clyde']
-
-function eatGhost(ghost){
-  if (ghost.edible === false ) {
-    lives -= 1;
-  }
-  }
-//game over function not working yet.
-function gameOver(lives) {
-  if (lives <= 0) {
-    console.log('n Game Over')
-  }
-}
 
 
 
